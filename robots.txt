@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://muelinmuelin.github.io/samblitz/sitemap.xml

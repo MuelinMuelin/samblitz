@@ -1,1 +1,346 @@
-<!doctype html><html lang="es"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/><title>samblitz — Fragancias</title><link rel="stylesheet" href="./styles.css"/></head><body><header class="nav"></header><main id="top"><section class="hero"><div class="hero-shade"></div><div class="hero-copy"><p>PRESENTACIÓN / SAMUEL</p><h1>samblitz</h1><span>Fragancias que dejan huella.</span></div></section><section class="collection" id="productos"><p class="eyebrow">COLECCIÓN PRIVADA</p><h2>Descubre tu firma.</h2><div class="filter-bar"><label for="typeFilter">Filtrar por tipo</label><select id="typeFilter"><option value="all">Todas las lociones</option><option value="original">Original</option><option value="calidad">Calidad 1.1</option><option value="replica">Réplica</option><option value="decants">Decants</option></select></div><div id="products" class="grid"></div></section><section id="detail" class="detail" hidden></section></main><aside id="cart" class="cart" aria-label="Carrito"><div class="cart-head"><h2>Tu carrito</h2><button id="closeCart" aria-label="Cerrar carrito">×</button></div><div id="cartItems"></div><div class="cart-total"><span>Total</span><strong id="cartTotal">$0</strong></div><button id="confirmOrder" class="gold full">Confirmar compra por WhatsApp</button></aside><button id="cartToggle" class="cart-toggle">Carrito <span id="cartCount">0</span></button><footer><div class="footer-line"></div><div class="footer-row"><span class="brand">samblitz</span><span>© 2026 samblitz Fragrances. Todos los derechos reservados.</span></div></footer><script src="./app.js"></script></body></html>
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Samblitz | Perfumes y lociones en Cali — Réplicas, decants y originales</title>
+  <meta name="description" content="Compra perfumes y lociones en Cali con Samblitz: réplicas de 30, 50 y 100 ml, decants y fragancias originales. Explora nuestra colección privada y recibe atención personalizada por WhatsApp."/>
+  <meta name="keywords" content="perfumes en Cali, lociones en Cali, réplicas de perfumes, decants de perfumes, perfumes originales, fragancias masculinas, fragancias femeninas, perfumes unisex, Samblitz"/>
+  <meta name="author" content="Samblitz Perfumería"/>
+  <meta name="robots" content="index, follow, max-image-preview:large"/>
+  <link rel="canonical" href="https://muelinmuelin.github.io/samblitz/"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="Samblitz | Perfumes y lociones en Cali"/>
+  <meta property="og:description" content="Réplicas, decants y perfumes originales. Encuentra tu fragancia ideal y compra en Cali."/>
+  <meta property="og:url" content="https://muelinmuelin.github.io/samblitz/"/>
+  <meta property="og:image" content="https://muelinmuelin.github.io/samblitz/assets/logo.png"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"PerfumeStore",
+    "name":"Samblitz Perfumería",
+    "url":"https://muelinmuelin.github.io/samblitz/",
+    "logo":"https://muelinmuelin.github.io/samblitz/assets/logo.png",
+    "description":"Perfumes, lociones, réplicas y decants en Cali.",
+    "telephone":"+573163571026",
+    "areaServed":{"@type":"City","name":"Cali"},
+    "sameAs":["https://wa.me/573163571026"]
+  }
+  </script>
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&family=Pinyon+Script&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"/>
+  <link rel="stylesheet" href="./styles.css"/>
+  <style>
+    @media (max-width: 768px){.mobile-menu-toggle{display:inline-flex!important;align-items:center;justify-content:center;position:relative;z-index:50;flex:0 0 42px}.nav-container{position:relative}.nav-links.is-open{display:flex!important}}
+  </style>
+</head>
+<body>
+  <!-- Global Luxury Header -->
+  <header class="nav">
+    <div class="nav-container">
+      <a href="#top" class="brand">
+        <img src="./assets/logo.webp" alt="Samblitz Perfumería Logo" class="brand-logo-img" width="40" height="40" fetchpriority="high"/>
+        <span class="brand-text">Samblitz</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#productos" data-view="productos">Colección</a>
+        <a href="#versiones" data-view="versiones">Guía de Versiones</a>
+        <a href="#garantia" data-view="garantia">Garantía & Envíos</a>
+        <a href="#faq" data-view="faq">Preguntas Frecuentes</a>
+      </nav>
+      <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-shade"></div>
+      <div class="hero-radial"></div>
+      <div class="hero-copy">
+        <div class="hero-logo-wrap">
+          <img src="./assets/logo.webp" alt="Samblitz Perfumería" class="hero-emblem" width="120" height="120" fetchpriority="high"/>
+        </div>
+        <div class="hero-crest">
+          <span class="crest-line"></span>
+          <span class="crest-tag">ALTA PERFUMERÍA · CASA PRIVADA</span>
+          <span class="crest-line"></span>
+        </div>
+        <p>PRESENTACIÓN / SAMUEL</p>
+        <h1>Samblitz</h1>
+        <span>Fragancias que dejan huella.</span>
+        <div class="hero-cta-wrap">
+          <a href="#productos" class="hero-btn" data-view="productos">Explorar la Colección</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products Collection Section -->
+    <section class="collection" id="productos">
+      <div class="collection-header">
+        <p class="eyebrow">COLECCIÓN PRIVADA</p>
+        <h2>Descubre tu perfume.</h2>
+      </div>
+      <div class="filter-bar">
+        <div class="filter-label-group">
+          <span class="filter-icon">✧</span>
+          <label for="typeFilter">Presentación</label>
+        </div>
+        <div class="select-wrapper">
+          <select id="typeFilter">
+            <option value="replica">Réplicas Disponibles (30 ml)</option>
+            <option value="all">Ver Colección Completa</option>
+          </select>
+        </div>
+      </div>
+      <div id="products" class="grid"></div>
+    </section>
+
+    <!-- Detail View Section (rendered dynamically by app.js) -->
+    <section id="detail" class="detail" hidden></section>
+
+    <!-- Guía de Versiones & Concentraciones (Dedicated Category Section - Standalone View) -->
+    <section class="versions-section view-section" id="versiones" hidden>
+      <div class="section-container">
+        <div class="section-head text-center">
+          <p class="eyebrow">CURADURÍA & CATEGORÍAS</p>
+          <h2>Guía de Versiones.</h2>
+          <p class="section-sub">Conoce la diferencia entre cada una de las presentaciones que manejamos en Samblitz.</p>
+        </div>
+        <div class="versions-grid">
+          <article class="version-card">
+            <div class="version-badge">NUESTRA ESPECIALIDAD · DISPONIBLE AHORA</div>
+            <h3>¿Qué son nuestras Inspiraciones Olfativas?</h3>
+            <p class="version-subline">Formulación Premium de Alta Comparabilidad</p>
+            <p class="version-body">Son fragancias desarrolladas con finas esencias importadas, diseñadas para recrear con máxima fidelidad la composición de los perfumes de diseñador más icónicos. Te ofrecen una fijación garantizada de 8 a 12 horas y un balance insuperable entre elegancia y precio accesible.</p>
+            <div class="version-features">
+              <span>✦ Presentaciones disponibles: 30 ml · 50 ml · 100 ml</span>
+            </div>
+          </article>
+
+          <article class="version-card">
+            <div class="version-badge muted">GRADO PREMIUM · LA MÁXIMA EXPERIENCIA</div>
+            <h3>¿Qué es la Calidad 1.1?</h3>
+            <p class="version-subline">Alta Perfumería · Fidelidad Absoluta</p>
+            <p class="version-body">Constituyen la cima de la fidelidad aromática. Ofrecen una recreación exacta de la pirámide olfativa (notas de salida, corazón y fondo) junto con la misma presentación original: frasco, tapa, atomizador, caja y empaque son idénticos en diseño, peso y acabados al producto original.</p>
+            <div class="version-features">
+              <span>◈ Presentación: Formato idéntico al original con empaque y frasco</span>
+              <span>◈ Rendimiento: Máxima complejidad aromática, evolución y fijación de larga duración</span>
+            </div>
+          </article>
+
+          <article class="version-card">
+            <div class="version-badge muted">SELLO OFICIAL · AUTENTICIDAD GARANTIZADA</div>
+            <h3>¿Qué son los Perfumes Originales?</h3>
+            <p class="version-subline">Marcas Internacionales · 100% Auténticos</p>
+            <p class="version-body">Fragancias legítimas de las Casas de Perfumería más prestigiosas del mundo. Se entregan en su caja original sellada de fábrica y código de lote totalmente verificable para tu tranquilidad.</p>
+            <div class="version-features">
+              <span>◈ Garantía: Autenticidad absoluta en cada compra</span>
+              <span>◈ Presentación: Empaque oficial de fábrica sellado de origen</span>
+            </div>
+          </article>
+
+          <article class="version-card">
+            <div class="version-badge muted">MUESTRAS PORTÁTILES · TU COLECCIÓN COMPACTA</div>
+            <h3>¿Qué son los Decants?</h3>
+            <p class="version-subline">Perfumería de Bolsillo · 100% Fragancia Pura</p>
+            <p class="version-body">Porciones de fragancia extraídas directamente del frasco original y envasadas en frascos de vidrio. La opción perfecta para viajar, probar cómo reacciona la fragancia en tu piel o crear una colección variada sin comprar la botella entera.</p>
+            <div class="version-features">
+              <span>◈ Presentaciones y rendimiento:</span>
+              <span>5 ml: ~75 atomizaciones · 10 ml: ~150 atomizaciones · 15 ml: ~220 atomizaciones</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Garantía y Envíos (Expanded Section - Standalone View) -->
+    <section class="guarantee-section view-section" id="garantia" hidden>
+      <div class="section-container">
+        <div class="section-head text-center">
+          <p class="eyebrow">ENTREGA & ACOMPAÑAMIENTO</p>
+          <h2>Entregas y Atención.</h2>
+          <p class="section-sub">Coordinamos personalmente tu pedido y resolvemos tus inquietudes para que recibas tu perfume en Cali con tranquilidad.</p>
+        </div>
+        <div class="guarantee-grid">
+          <div class="guarantee-card">
+            <div class="guarantee-icon">✦</div>
+            <h4>Fijación & Maceración Prolongada</h4>
+            <p>Cuidamos la preparación de cada fragancia y seleccionamos presentaciones pensadas para ofrecer una estela agradable, equilibrada y duradera durante el día.</p>
+          </div>
+          <div class="guarantee-card">
+            <div class="guarantee-icon">◈</div>
+            <h4>Entregas Personales en Cali</h4>
+            <p>Realizamos entregas personales en Cali. El tiempo puede variar según la zona, la disponibilidad y la coordinación del pedido.</p>
+          </div>
+          <div class="guarantee-card">
+            <div class="guarantee-icon">✦</div>
+            <h4>Confirmación y Atención Personalizada</h4>
+            <p>Confirmamos contigo los productos, tu nombre y la dirección de entrega. También atendemos tus inquietudes y te orientamos para elegir la fragancia adecuada.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Preguntas Frecuentes (FAQ Section - Standalone View) -->
+    <section class="faq-section view-section" id="faq" hidden>
+      <div class="section-container">
+        <div class="section-head text-center">
+          <p class="eyebrow">RESOLVEMOS TUS DUDAS</p>
+          <h2>Preguntas Frecuentes.</h2>
+          <p class="section-sub">Todo lo que necesitas saber para realizar tu pedido con total seguridad.</p>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item" open>
+            <summary class="faq-question">
+              <span>¿Cómo realizo y confirmo mi compra?</span>
+              <span class="faq-chevron"></span>
+            </summary>
+            <div class="faq-answer">
+              <p>Es muy sencillo: exploras nuestra colección privada, seleccionas la fragancia que deseas y la añades al carrito. Luego abres tu bolsa y presionas <strong>«Confirmar compra por WhatsApp»</strong>. Se abrirá automáticamente un chat con nosotros con el resumen de tu pedido para coordinar tus datos de despacho y pago.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>¿Cuánto tiempo tarda en llegar mi pedido?</span>
+              <span class="faq-chevron"></span>
+            </summary>
+            <div class="faq-answer">
+              <p>Realizamos entregas personales en Cali. El tiempo de entrega puede variar según la zona y la coordinación del pedido; confirmaremos contigo el momento de entrega por WhatsApp.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>¿Cuáles son los medios de pago disponibles?</span>
+              <span class="faq-chevron"></span>
+            </summary>
+            <div class="faq-answer">
+              <p>Puedes pagar por <strong>Nequi, Llaves</strong> o <strong>pago contra entrega</strong>, según la disponibilidad para tu zona. Confirmamos el método de pago al coordinar tu pedido.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>¿Puedo recibir asesoría para elegir mi perfume ideal?</span>
+              <span class="faq-chevron"></span>
+            </summary>
+            <div class="faq-answer">
+              <p>¡Por supuesto! Escríbenos directamente por WhatsApp contándonos qué notas prefieres (amaderadas, dulces, cítricas, florales o frescas) y la ocasión en que planeas usarlo. Nuestro curador te guiará para encontrar tu firma olfativa perfecta.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Slide-Over Shopping Cart Drawer -->
+  <aside id="cart" class="cart" aria-label="Carrito">
+    <div class="cart-head">
+      <h2>Tu carrito</h2>
+      <button id="closeCart" aria-label="Cerrar carrito">×</button>
+    </div>
+    <div id="cartItems"></div>
+    <div class="cart-total">
+      <span>Total</span>
+      <strong id="cartTotal">$0</strong>
+    </div>
+    <button id="confirmOrder" class="gold full">Confirmar compra por WhatsApp</button>
+  </aside>
+
+  <!-- Floating Cart Talisman -->
+  <button id="cartToggle" class="cart-toggle">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <path d="M16 10a4 4 0 0 1-8 0"></path>
+    </svg>
+    <span>Carrito</span>
+    <span id="cartCount">0</span>
+  </button>
+
+  <!-- Footer with Social Media & WhatsApp Contact -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-brand-col">
+          <div class="footer-logo-row">
+            <img src="./assets/logo.png" alt="Samblitz Perfumería" class="footer-logo-img"/>
+            <span class="brand">Samblitz</span>
+          </div>
+          <p class="footer-desc">Casa de fragancias exclusivas. Selecciones de alta gama diseñadas para quienes buscan un aroma único, duradero y memorable.</p>
+        </div>
+        <div class="footer-links-col">
+          <h5>Navegación</h5>
+          <ul>
+            <li><a href="#productos" data-view="productos">Colección Privada</a></li>
+            <li><a href="#versiones" data-view="versiones">Guía de Versiones</a></li>
+            <li><a href="#garantia" data-view="garantia">Garantía & Envíos</a></li>
+            <li><a href="#faq" data-view="faq">Preguntas Frecuentes</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact-col">
+          <h5>Atención & Pedidos</h5>
+          <p>Confirmación personalizada por WhatsApp. Envíos protegidos a todo el país.</p>
+        </div>
+      </div>
+
+      <!-- Social Media & Contact Links -->
+      <div class="footer-social-bar">
+        <div class="social-header">
+          <span>Síguenos & Contáctanos</span>
+        </div>
+        <div class="social-links-grid">
+          <a href="#" class="social-pill instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram Samblitz">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+            <span>Instagram</span>
+          </a>
+
+          <a href="#" class="social-pill facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook Samblitz">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+            </svg>
+            <span>Facebook</span>
+          </a>
+
+          <a href="#" class="social-pill tiktok" target="_blank" rel="noopener noreferrer" aria-label="TikTok Samblitz">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
+            </svg>
+            <span>TikTok</span>
+          </a>
+
+          <a href="https://wa.me/573000000000" class="social-pill whatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Samblitz">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+            </svg>
+            <span>WhatsApp</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-line"></div>
+      <div class="footer-row">
+        <span class="brand-mini">Samblitz · Perfumería</span>
+        <span>© 2026 Samblitz Fragrances. Todos los derechos reservados.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelector('#mobileMenuToggle').addEventListener('click',function(){const nav=document.querySelector('.nav-links');const open=nav.classList.toggle('is-open');this.setAttribute('aria-expanded',open?'true':'false');this.textContent=open?'×':'☰'});
+    document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{document.querySelector('.nav-links').classList.remove('is-open');document.querySelector('#mobileMenuToggle').textContent='☰';document.querySelector('#mobileMenuToggle').setAttribute('aria-expanded','false')}));
+  </script>
+  <script src="./app.js"></script>
+</body>
+</html>
