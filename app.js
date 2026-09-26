@@ -1,7 +1,7 @@
 const variants=[
   {
-    label:'Réplica',
-    category:'Réplica',
+    label:'Inspirado en',
+    category:'Inspirado en',
     size:'30 ml',
     available:true,
     sizes:['30 ml'],
@@ -126,16 +126,14 @@ const fragranceInfo = {
   'Moschino Toy 2': {description:'Mandarina, manzana y magnolia sobre peonía, jazmín, sándalo y almizcle; limpia, floral y juguetona.',gender:'Mujer',category:'Floral almizclada',climate:'Cálido y templado',occasion:'Diario, oficina y casual'}
 };
 const getFragranceInfo = name => fragranceInfo[name] || {description:'Una composición equilibrada de salida luminosa, corazón aromático y fondo amaderado de larga duración.',gender:'Unisex',category:'Eau de parfum',climate:'Templado',occasion:'Diario, casual y citas'};
-const cart = [];
+const cart = JSON.parse(localStorage.getItem('samblitz_cart') || '[]');
 const price = 20000;
-let filter = 'replica';
 const money = n => new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(n);
-const chosen = () => 0; // Siempre toma la opción activa: Réplica 30 ml
 
 function add(name, variant, size) {
   const v = variants.find(x => x.label === variant) || variants[0];
   if (!v.available) {
-    alert(`${v.label} no está disponible por el momento. Únicamente manejamos Réplica 30 ml.`);
+    const message=document.querySelector('#cartMessage'); if(message) message.textContent=`${v.label} no está disponible por el momento. Únicamente manejamos Inspirado en 30 ml.`;
     return;
   }
   const itemSize = size || v.size || '30 ml';
@@ -150,8 +148,10 @@ function add(name, variant, size) {
 }
 
 function renderProducts() {
-  const v = variants[0]; // Réplica activa 30 ml
-  document.querySelector('#products').innerHTML = products.map(([name, type, imgUrl]) => `
+  const v = variants[0]; // Inspirado en activo, 30 ml
+  const genderFilter=document.querySelector('#genderFilter')?.value||'all';
+  const visibleProducts=products.filter(([name])=>genderFilter==='all'||getFragranceInfo(name).gender===genderFilter);
+  document.querySelector('#products').innerHTML = visibleProducts.map(([name, type, imgUrl]) => `
     <article class="card" data-name="${name}">
       <button class="visual" data-name="${name}" data-variant="${v.label}" aria-label="Ver fragancia ${name}">
         <img src="${imgUrl}" alt="${name}" loading="lazy" decoding="async" width="896" height="1200">
@@ -175,14 +175,14 @@ function renderProducts() {
       e.stopPropagation();
       if (e.target.closest('.add')) return;
       const productName = card.dataset.name;
-      showDetail(productName, 'Réplica');
+      showDetail(productName, 'Inspirado en');
     });
   });
 
   document.querySelectorAll('.add').forEach(b => b.onclick = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    add(b.dataset.name, b.dataset.variant || 'Réplica', '30 ml');
+    add(b.dataset.name, b.dataset.variant || 'Inspirado en', '30 ml');
   });
 }
 
@@ -190,6 +190,9 @@ const viewSections = {
   versiones: document.querySelector('#versiones'),
   garantia: document.querySelector('#garantia'),
   faq: document.querySelector('#faq'),
+  terminos: document.querySelector('#terminos'),
+  privacidad: document.querySelector('#privacidad'),
+  'aviso-legal': document.querySelector('#aviso-legal'),
   detail: document.querySelector('#detail')
 };
 
@@ -200,6 +203,7 @@ function hideAllViews() {
 }
 
 function showView(viewKey) {
+  history.replaceState(null, '', `#${viewKey}`);
   const hero = document.querySelector('.hero');
   const collection = document.querySelector('.collection');
 
@@ -258,7 +262,6 @@ function showDetail(name,selected){
   if(hero) hero.hidden = true;
   if(collection) collection.hidden = true;
 
-  const activeVariants = variants.filter(x => x.available);
   detail.hidden=false;
   detail.innerHTML=`
     <button class="back" id="back">
@@ -270,7 +273,7 @@ function showDetail(name,selected){
     </button>
     <div class="detail-grid">
       <div class="detail-image">
-        <img src="${getProductImage(name)}" alt="${name}">
+        <img src="${getProductImage(name)}" alt="${name}" loading="lazy" decoding="async" width="896" height="1200">
       </div>
       <div class="detail-copy">
         <p class="eyebrow">DETALLE DE FRAGANCIA</p>
@@ -284,7 +287,7 @@ function showDetail(name,selected){
         </div>
         <div class="variant-picker">
           <p>Versión Disponible</p>
-          <button type="button" class="variant selected" data-variant="Réplica">Réplica Exclusiva<small>30 ml</small></button>
+          <button type="button" class="variant selected" data-variant="Inspirado en">Inspirado en<small>30 ml</small></button>
         </div>
         <div class="size-picker">
           <p>Medida</p>
@@ -312,13 +315,14 @@ function showDetail(name,selected){
     addBtn.onclick=()=>{
       const qty = parseInt(detail.querySelector('#detailQty')?.value || '1', 10);
       for(let k = 0; k < qty; k++) {
-        add(name, 'Réplica', '30 ml');
+        add(name, 'Inspirado en', '30 ml');
       }
     };
   }
 
   const backBtn = detail.querySelector('#back');
   if(backBtn){
+    requestAnimationFrame(()=>backBtn.focus());
     backBtn.onclick=()=>{
       showView('productos');
     };
@@ -343,22 +347,28 @@ function renderCart(){
   document.querySelectorAll('[data-inc]').forEach(b=>b.onclick=()=>{cart[b.dataset.inc].qty++;renderCart()});
   document.querySelectorAll('[data-dec]').forEach(b=>b.onclick=()=>{cart[b.dataset.dec].qty--;if(!cart[b.dataset.dec].qty)cart.splice(b.dataset.dec,1);renderCart()});
   document.querySelectorAll('[data-remove]').forEach(b=>b.onclick=()=>{cart.splice(b.dataset.remove,1);renderCart()});
+  localStorage.setItem('samblitz_cart', JSON.stringify(cart));
 }
 
 document.querySelector('#confirmOrder')?.addEventListener('click', () => {
   if (!cart.length) {
-    alert('Tu carrito está vacío. Elige tu fragancia favorita.');
+    const message=document.querySelector('#cartMessage'); if(message) message.textContent='Tu carrito está vacío. Elige tu fragancia favorita.';
     return;
   }
   const lines = cart.map(x => `• ${x.qty}x ${x.name} (${x.variant} ${x.size}) - ${money(x.price * x.qty)}`);
   const total = cart.reduce((a, x) => a + x.price * x.qty, 0);
   const text = `¡Hola Samblitz! Deseo realizar el siguiente pedido:\n\n${lines.join('\n')}\n\n*Total a pagar:* ${money(total)}\n\n¿Me confirman disponibilidad para acordar el despacho?`;
   const whatsappUrl = `https://wa.me/573163571026?text=${encodeURIComponent(text)}`;
-  window.location.href = whatsappUrl;
+  window.open(whatsappUrl, '_blank', 'noopener');
 });
 
-document.querySelector('#typeFilter').onchange=e=>{filter=e.target.value;renderProducts()};
+document.querySelector('#typeFilter').onchange=()=>renderProducts();
+document.querySelector('#genderFilter').onchange=()=>renderProducts();
 document.querySelector('#cartToggle').onclick=()=>document.querySelector('#cart').classList.add('open');
 document.querySelector('#closeCart').onclick=()=>document.querySelector('#cart').classList.remove('open');
 renderProducts();
 renderCart();
+document.querySelector('#currentYear').textContent=new Date().getFullYear();
+const route=()=>showView(location.hash.replace('#','')||'productos');
+window.addEventListener('hashchange',route);
+route();

@@ -3,29 +3,32 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Samblitz | Perfumes y lociones en Cali — Réplicas, decants y originales</title>
-  <meta name="description" content="Compra perfumes y lociones en Cali con Samblitz: réplicas de 30, 50 y 100 ml, decants y fragancias originales. Explora nuestra colección privada y recibe atención personalizada por WhatsApp."/>
-  <meta name="keywords" content="perfumes en Cali, lociones en Cali, réplicas de perfumes, decants de perfumes, perfumes originales, fragancias masculinas, fragancias femeninas, perfumes unisex, Samblitz"/>
+  <title>Samblitz | Perfumes y lociones en Cali — Inspiraciones, decants y originales</title>
+  <meta name="description" content="Compra perfumes y lociones en Cali con Samblitz: inspiraciones olfativas, decants y fragancias originales. Explora nuestra colección privada y recibe atención personalizada por WhatsApp."/>
+  <meta name="keywords" content="perfumes en Cali, lociones en Cali, inspiraciones olfativas, decants de perfumes, perfumes originales, fragancias masculinas, fragancias femeninas, perfumes unisex, Samblitz"/>
   <meta name="author" content="Samblitz Perfumería"/>
   <meta name="robots" content="index, follow, max-image-preview:large"/>
   <link rel="canonical" href="https://muelinmuelin.github.io/samblitz/"/>
   <link rel="icon" type="image/png" href="./assets/samblitz-favicon.png"/>
   <link rel="apple-touch-icon" href="./assets/samblitz-favicon.png"/>
+  <meta name="theme-color" content="#080a0f"/>
   <meta property="og:type" content="website"/>
   <meta property="og:title" content="Samblitz | Perfumes y lociones en Cali"/>
-  <meta property="og:description" content="Réplicas, decants y perfumes originales. Encuentra tu fragancia ideal y compra en Cali."/>
+  <meta property="og:description" content="Inspiraciones olfativas, decants y perfumes originales. Encuentra tu fragancia ideal y compra en Cali."/>
   <meta property="og:url" content="https://muelinmuelin.github.io/samblitz/"/>
-  <meta property="og:image" content="https://muelinmuelin.github.io/samblitz/assets/logo.png"/>
+  <meta property="og:image" content="https://muelinmuelin.github.io/samblitz/assets/products/paco_rabanne_1_million.webp"/>
   <meta name="twitter:card" content="summary_large_image"/>
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
-    "@type":"PerfumeStore",
+    "@type":"Store",
     "name":"Samblitz Perfumería",
     "url":"https://muelinmuelin.github.io/samblitz/",
     "logo":"https://muelinmuelin.github.io/samblitz/assets/logo.png",
-    "description":"Perfumes, lociones, réplicas y decants en Cali.",
+    "description":"Perfumes, lociones, inspiraciones olfativas y decants en Cali.",
     "telephone":"+573163571026",
+    "priceRange":"$20.000–$200.000",
+    "address":{"@type":"PostalAddress","addressLocality":"Cali","addressRegion":"Valle del Cauca","addressCountry":"CO"},
     "areaServed":{"@type":"City","name":"Cali"},
     "sameAs":["https://wa.me/573163571026"]
   }
@@ -34,13 +37,14 @@
   <link rel="dns-prefetch" href="https://fonts.gstatic.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&family=Pinyon+Script&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"/>
   <link rel="stylesheet" href="./styles.css"/>
   <style>
     @media (max-width: 768px){.mobile-menu-toggle{display:inline-flex!important;align-items:center;justify-content:center;position:relative;z-index:50;flex:0 0 42px}.nav-container{position:relative}.nav-links.is-open{display:flex!important}}
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#productos">Saltar al contenido</a>
   <!-- Global Luxury Header -->
   <header class="nav">
     <div class="nav-container">
@@ -94,12 +98,23 @@
         </div>
         <div class="select-wrapper">
           <select id="typeFilter">
-            <option value="replica">Réplicas Disponibles (30 ml)</option>
+            <option value="replica">Inspiraciones disponibles (30 ml)</option>
             <option value="all">Ver Colección Completa</option>
+          </select>
+        </div>
+        <div class="select-wrapper">
+          <select id="genderFilter" aria-label="Filtrar por género">
+            <option value="all">Todos los géneros</option>
+            <option value="Hombre">Hombre</option>
+            <option value="Mujer">Mujer</option>
+            <option value="Unisex">Unisex</option>
           </select>
         </div>
       </div>
       <div id="products" class="grid"></div>
+      <noscript>
+        <div class="seo-catalog"><h3>Perfumes disponibles en Cali</h3><p>Lacoste L.12.12 Blanc · Santal 33 · Khamrah · 1 Million · Amber Oud · Blue Seduction · Invictus · 1 Million Lucky · 212 VIP · Born in Roma · Cloud · Flowerbomb · Mad About You · Paris Hilton · CH Beauties · Yara · Good Girl · Sorbetto Rosso · La Vie Est Belle · Velvet Sugar · L.12.12 Noir · Le Male Elixir · Lolita Lempicka · Bharara Niche Femme · Yara Tous · Moschino Toy 2.</p></div>
+      </noscript>
     </section>
 
     <!-- Detail View Section (rendered dynamically by app.js) -->
@@ -240,6 +255,10 @@
       </div>
     </section>
 
+    <section class="info-section view-section" id="terminos" hidden><div class="section-container"><div class="section-head text-center"><p class="eyebrow">INFORMACIÓN LEGAL</p><h2>Términos y condiciones.</h2><p class="section-sub">Al realizar un pedido confirmas que revisaste la fragancia, la presentación, el precio y las condiciones de entrega acordadas por WhatsApp.</p></div></div></section>
+    <section class="info-section view-section" id="privacidad" hidden><div class="section-container"><div class="section-head text-center"><p class="eyebrow">INFORMACIÓN LEGAL</p><h2>Política de privacidad.</h2><p class="section-sub">Usamos los datos que compartes únicamente para confirmar tu pedido, coordinar la entrega y atender tus consultas. No vendemos tus datos personales.</p></div></div></section>
+    <section class="info-section view-section" id="aviso-legal" hidden><div class="section-container"><div class="section-head text-center"><p class="eyebrow">INFORMACIÓN LEGAL</p><h2>Aviso legal.</h2><p class="section-sub">Samblitz ofrece inspiraciones olfativas, decants y perfumes originales claramente identificados. Las marcas mencionadas pertenecen a sus respectivos titulares y se usan solo para describir referencias aromáticas.</p></div></div></section>
+
   </main>
 
   <!-- Slide-Over Shopping Cart Drawer -->
@@ -249,6 +268,7 @@
       <button id="closeCart" aria-label="Cerrar carrito">×</button>
     </div>
     <div id="cartItems"></div>
+    <p id="cartMessage" class="cart-message" role="status" aria-live="polite"></p>
     <div class="cart-total">
       <span>Total</span>
       <strong id="cartTotal">$0</strong>
@@ -273,7 +293,7 @@
       <div class="footer-top">
         <div class="footer-brand-col">
           <div class="footer-logo-row">
-            <img src="./assets/logo.png" alt="Samblitz Perfumería" class="footer-logo-img"/>
+            <img src="./assets/logo.webp" alt="Samblitz Perfumería" class="footer-logo-img" width="56" height="56" loading="lazy"/>
             <span class="brand">Samblitz</span>
           </div>
           <p class="footer-desc">Casa de fragancias exclusivas. Selecciones de alta gama diseñadas para quienes buscan un aroma único, duradero y memorable.</p>
@@ -289,7 +309,7 @@
         </div>
         <div class="footer-contact-col">
           <h5>Atención & Pedidos</h5>
-          <p>Confirmación personalizada por WhatsApp. Envíos protegidos a todo el país.</p>
+          <p>Confirmación personalizada por WhatsApp y entregas personales en Cali, coordinadas según la zona.</p>
         </div>
       </div>
 
@@ -332,9 +352,14 @@
       </div>
 
       <div class="footer-line"></div>
+      <nav class="footer-legal" aria-label="Información legal">
+        <a href="#terminos" data-view="terminos">Términos y condiciones</a>
+        <a href="#privacidad" data-view="privacidad">Política de privacidad</a>
+        <a href="#aviso-legal" data-view="aviso-legal">Aviso legal</a>
+      </nav>
       <div class="footer-row">
         <span class="brand-mini">Samblitz · Perfumería</span>
-        <span>© 2026 Samblitz Fragrances. Todos los derechos reservados.</span>
+        <span>© <span id="currentYear"></span> Samblitz Fragrances. Todos los derechos reservados.</span>
       </div>
     </div>
   </footer>
