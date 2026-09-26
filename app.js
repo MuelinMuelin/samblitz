@@ -353,7 +353,7 @@ document.querySelector('#confirmOrder')?.addEventListener('click', () => {
   const lines = cart.map(x => `• ${x.qty}x ${x.name} (${x.variant} ${x.size}) - ${money(x.price * x.qty)}`);
   const total = cart.reduce((a, x) => a + x.price * x.qty, 0);
   const text = `¡Hola Samblitz! Deseo realizar el siguiente pedido:\n\n${lines.join('\n')}\n\n*Total a pagar:* ${money(total)}\n\n¿Me confirman disponibilidad para acordar el despacho?`;
-  window.open(`https://wa.me/573000000000?text=${encodeURIComponent(text)}`, '_blank');
+  window.open(`https://wa.me/573163571026?text=${encodeURIComponent(text)}`, '_blank');
 });
 
 document.querySelector('#typeFilter').onchange=e=>{filter=e.target.value;renderProducts()};
