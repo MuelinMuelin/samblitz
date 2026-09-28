@@ -1,11 +1,19 @@
 const variants=[
   {
-    label:'Inspirado en',
-    category:'Inspirado en',
+    label:'Loción de inspiración',
+    category:'Loción de inspiración',
     size:'30 ml',
     available:true,
-    sizes:['30 ml'],
+    sizes:['30 ml','50 ml','100 ml'],
     image:'https://framerusercontent.com/images/AJ4Rvo75Bm0thQaMva35BFYYPQ.jpg'
+  },
+  {
+    label:'Calidad 1.1',
+    category:'1.1',
+    size:'100 ml',
+    available:true,
+    sizes:['100 ml'],
+    image:'https://framerusercontent.com/images/f3n6hrxBEk4f62CNXM1xADeIjmo.jpg'
   },
   {
     label:'Original',
@@ -14,14 +22,6 @@ const variants=[
     available:false,
     sizes:['100 ml'],
     image:'https://framerusercontent.com/images/5beq1UCAZb4RsAJabFeY5xDQc.jpg'
-  },
-  {
-    label:'Calidad 1.1',
-    category:'1.1',
-    size:'100 ml',
-    available:false,
-    sizes:['100 ml'],
-    image:'https://framerusercontent.com/images/f3n6hrxBEk4f62CNXM1xADeIjmo.jpg'
   },
   {
     label:'Decant',
@@ -46,20 +46,20 @@ const names = [
   'Carolina Herrera 212 VIP',
   'Valentino Born in Roma',
   'Ariana Grande Cloud',
-  'Viktor & Rolf Flowerbomb (La Bomba)',
-  'Bath & Body Works Mad About You',
+  'Viktor & Rolf Flowerbomb',
+  'Mad About You',
   'Paris Hilton Eau de Parfum',
   'Carolina Herrera CH Beauties',
   'Lattafa Yara Rosa',
   'Carolina Herrera Good Girl',
   'Escada Sorbetto Rosso',
   'Lancôme La Vie Est Belle',
-  'Bath & Body Works Velvet Sugar',
+  'Velvet Sugar',
   'Lacoste L.12.12 Noir',
   'Jean Paul Gaultier Le Male Elixir',
   'Lolita Lempicka Eau de Parfum',
   'Bharara Niche Femme',
-  'Lattafa Yara Tous (AAA)',
+  'Lattafa Yara Tous',
   'Moschino Toy 2'
 ];
 
@@ -76,8 +76,8 @@ const customImages = {
   'Carolina Herrera 212 VIP': './assets/products/two_one_two_vip.webp',
   'Carolina Herrera Good Girl': './assets/products/good_girl.webp',
   'Ariana Grande Cloud': './assets/products/cloud.webp',
-  'Viktor & Rolf Flowerbomb (La Bomba)': './assets/products/flowerbomb.webp',
-  'Bath & Body Works Mad About You': './assets/products/mad_about_you.webp',
+  'Viktor & Rolf Flowerbomb': './assets/products/flowerbomb.webp',
+  'Mad About You': './assets/products/mad_about_you.webp',
   'Paris Hilton Eau de Parfum': './assets/products/paris_hilton.webp',
   'Carolina Herrera CH Beauties': './assets/products/ch_beauties.webp',
   'Lattafa Yara Rosa': './assets/products/yara_rosa.webp',
@@ -86,17 +86,25 @@ const customImages = {
   'Jean Paul Gaultier Le Male Elixir': './assets/products/le_male_elixir.webp',
   'Moschino Toy 2': './assets/products/moschino_toy_2.webp',
   'Escada Sorbetto Rosso': './assets/products/escada_sorbetto_rosso.webp',
-  'Bath & Body Works Velvet Sugar': './assets/products/velvet_sugar.webp',
+  'Velvet Sugar': './assets/products/velvet_sugar.webp',
   'Lacoste L.12.12 Noir': './assets/products/lacoste_noir.webp',
   'Lolita Lempicka Eau de Parfum': './assets/products/lolita_lempicka.webp',
   'Bharara Niche Femme': './assets/products/bharara_niche_femme.webp',
-  'Lattafa Yara Tous (AAA)': './assets/products/yara_tous.webp'
+  'Lattafa Yara Tous': './assets/products/yara_tous.webp'
 };
 
-const defaultReplicaImage = './assets/products/template_reference.png';
+const defaultReplicaImage = './assets/products/frascos_Lociones de inspiración.png';
 const getProductImage = name => customImages[name] || defaultReplicaImage;
+const assetNameAliases = {'Viktor & Rolf Flowerbomb (La Bomba)':'Viktor & Rolf Flowerbomb','Lattafa Yara Tous (AAA)':'Lattafa Yara Tous'};
+const variantFileLabel = label => label === 'Loción de inspiración' ? '_Lociones de inspiración' : `_${label}`;
+const getVariantImage = (name,label) => `./assets/products/${assetNameAliases[name]||name}${variantFileLabel(label)}.webp`;
+const getVariantPngImage = (name,label) => `./assets/products/${assetNameAliases[name]||name}${variantFileLabel(label)}.png`;
+const setImageWithFallback = (img,name,label) => { const variantSrc=getVariantImage(name,label),pngSrc=getVariantPngImage(name,label); img.onerror=()=>{if(img.src.endsWith('.webp')){img.onerror=()=>{img.src=defaultReplicaImage};img.src=pngSrc}else{img.src=defaultReplicaImage}}; img.src=variantSrc; };
+const detailGalleryItems = (name,label,v) => [{label:v.label,src:getVariantImage(name,label)}];
 
 const products = names.map(name => [name, 'Eau de parfum', getProductImage(name)]);
+const availableQualityProducts = new Set(['Moschino Toy 2','Bharara Niche Femme']);
+const isVariantAvailable = (name,variant) => variant.label === 'Calidad 1.1' ? availableQualityProducts.has(name) : variant.available;
 const fragranceInfo = {
   'Lacoste L.12.12 Blanc': {description:'Acordes cítricos y especiados que se vuelven limpios, amaderados y ligeramente dulces; una estela fresca y pulida.',gender:'Hombre',category:'Amaderada especiada',climate:'Cálido y templado',occasion:'Diario, oficina y casual'},
   'Le Labo Santal 33': {description:'Sándalo seco, cedro, cuero suave y un matiz ahumado que construyen una firma elegante, cálida y envolvente.',gender:'Unisex',category:'Amaderada ambarada',climate:'Templado y frío',occasion:'Citas, noches y eventos elegantes'},
@@ -129,42 +137,48 @@ const getFragranceInfo = name => fragranceInfo[name] || {description:'Una compos
 const cart = JSON.parse(localStorage.getItem('samblitz_cart') || '[]');
 const price = 20000;
 const money = n => new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(n);
+const priceFor = (variant,size,name) => variant === 'Calidad 1.1' ? ({'Bharara Niche Femme':130000,'Moschino Toy 2':90000}[name] ?? null) : ({'30 ml':20000,'50 ml':30000,'100 ml':50000}[size] || 20000);
+const priceLabel = (variant,size,name) => { const value=priceFor(variant,size,name); return value===null?'Precio por confirmar':money(value); };
+let filter='replica';
+const carouselStates=[{variant:variants[0],size:'30 ml'},{variant:variants[0],size:'50 ml'},{variant:variants[0],size:'100 ml'},{variant:variants[1],size:'100 ml'}];
 
 function add(name, variant, size) {
   const v = variants.find(x => x.label === variant) || variants[0];
-  if (!v.available) {
-    const message=document.querySelector('#cartMessage'); if(message) message.textContent=`${v.label} no está disponible por el momento. Únicamente manejamos Inspirado en 30 ml.`;
+  if (!isVariantAvailable(name,v)) {
+    const message=document.querySelector('#cartMessage'); if(message) message.textContent=`${v.label} no está disponible por el momento.`;
     return;
   }
   const itemSize = size || v.size || '30 ml';
+  const itemPrice=priceFor(v.label,itemSize,name);
   const item = cart.find(x => x.name === name && x.variant === v.label && x.size === itemSize);
   if (item) {
     item.qty++;
   } else {
-    cart.push({ name, variant: v.label, size: itemSize, category: v.category, qty: 1, price });
+    cart.push({ name, variant: v.label, size: itemSize, category: v.category, qty: 1, price:itemPrice });
   }
   renderCart();
   document.querySelector('#cart').classList.add('open');
 }
 
 function renderProducts() {
-  const v = variants[0]; // Inspirado en activo, 30 ml
+  const selectedIndex={replica:0,calidad:1,all:0}[filter] ?? 0;
+  const v = variants[selectedIndex];
   const genderFilter=document.querySelector('#genderFilter')?.value||'all';
-  const visibleProducts=products.filter(([name])=>genderFilter==='all'||getFragranceInfo(name).gender===genderFilter);
+  const visibleProducts=products.filter(([name])=>genderFilter==='all'||getFragranceInfo(name).gender===genderFilter).sort(([nameA],[nameB])=>Number(isVariantAvailable(nameB,v))-Number(isVariantAvailable(nameA,v)));
   document.querySelector('#products').innerHTML = visibleProducts.map(([name, type, imgUrl]) => `
     <article class="card" data-name="${name}">
-      <button class="visual" data-name="${name}" data-variant="${v.label}" aria-label="Ver fragancia ${name}">
-        <img src="${imgUrl}" alt="${name}" loading="lazy" decoding="async" width="896" height="1200">
+      <button class="visual ${isVariantAvailable(name,v)?'':'sold-out'}" data-name="${name}" data-variant="${v.label}" aria-label="Ver fragancia ${name}">
+        <img src="${getVariantImage(name,v.label)}" alt="${name}" loading="lazy" decoding="async" width="896" height="1200" onerror="if(this.src.endsWith('.webp')){this.onerror=null;this.src='${getVariantPngImage(name,v.label)}'}else{this.onerror=null;this.src='${defaultReplicaImage}'}">
         <span class="progress"></span>
-        <span class="availability" style="display:none"></span>
+        <span class="availability" style="${isVariantAvailable(name,v)?'display:none':''}">${isVariantAvailable(name,v)?'':'Agotada'}</span>
       </button>
       <h3 class="product-title" data-name="${name}">${name}</h3>
       <div class="desc" data-name="${name}">
         <strong>${v.label}</strong>
-        <span>Presentaciones: ${v.size}</span>
+        <span>Presentaciones: ${v.sizes?.join(' · ')||v.size}</span>
       </div>
-      <small>${money(price)}</small>
-      <button class="gold add" data-name="${name}" data-variant="${v.label}">Añadir al carrito</button>
+      <small>${priceLabel(v.label,v.size,name)}</small>
+      <button class="gold add" data-name="${name}" data-variant="${v.label}" data-size="${v.size}" ${isVariantAvailable(name,v)?'':'disabled'}>${isVariantAvailable(name,v)?'Añadir al carrito':'Agotada'}</button>
     </article>
   `).join('');
 
@@ -175,14 +189,22 @@ function renderProducts() {
       e.stopPropagation();
       if (e.target.closest('.add')) return;
       const productName = card.dataset.name;
-      showDetail(productName, 'Inspirado en');
+      showDetail(productName, card.querySelector('.visual').dataset.variant);
     });
   });
 
   document.querySelectorAll('.add').forEach(b => b.onclick = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    add(b.dataset.name, b.dataset.variant || 'Inspirado en', '30 ml');
+    add(b.dataset.name, b.dataset.variant || v.label, b.dataset.size || v.size);
+  });
+
+  if(filter==='all') document.querySelectorAll('.visual').forEach(el=>{
+    let i=0,timer;
+    const card=el.closest('.card'),img=el.querySelector('img'),bar=el.querySelector('.progress'),status=el.querySelector('.availability'),strong=card.querySelector('.desc strong'),measure=card.querySelector('.desc span'),button=card.querySelector('.add');
+    const update=()=>{const state=carouselStates[i%carouselStates.length],x=state.variant,available=isVariantAvailable(name,x);el.dataset.variant=x.label;setImageWithFallback(img,name,x.label);strong.textContent=x.label;measure.textContent=`Presentaciones: ${x.sizes?.join(' · ')||x.size}`;el.classList.toggle('sold-out',!available);status.textContent=available?'':'Agotada';status.style.display=available?'none':'';button.disabled=!available;button.textContent=available?'Añadir al carrito':'Agotada';button.dataset.variant=x.label;button.dataset.size=state.size;bar.style.transition='none';bar.style.width='0%';void bar.offsetWidth;bar.style.transition='width 2.4s linear';bar.style.width='100%'};
+    el.onmouseenter=()=>{i=0;update();timer=setInterval(()=>{i=(i+1)%carouselStates.length;update()},2400)};
+    el.onmouseleave=()=>{clearInterval(timer);i=0;update()};
   });
 }
 
@@ -253,6 +275,7 @@ document.querySelector('.brand')?.addEventListener('click', e => {
 function showDetail(name,selected){
   const v=variants.find(x=>x.label===selected)||variants[0];
   const info=getFragranceInfo(name);
+  const requiresSize=v.label==='Loción de inspiración';
   const detail=document.querySelector('#detail');
   const hero=document.querySelector('.hero');
   const collection=document.querySelector('.collection');
@@ -272,8 +295,13 @@ function showDetail(name,selected){
       Volver a la colección
     </button>
     <div class="detail-grid">
-      <div class="detail-image">
-        <img src="${getProductImage(name)}" alt="${name}" loading="lazy" decoding="async" width="896" height="1200">
+      <div class="detail-media ${detailGalleryItems(name,v.label,v).length>1?'with-gallery':'single'}">
+        <div class="detail-gallery" role="list" aria-label="Imágenes y presentaciones de ${name}">
+          ${detailGalleryItems(name,v.label,v).length>1?detailGalleryItems(name,v.label,v).map(item=>`<button type="button" class="gallery-thumb" data-gallery-src="${item.src}" aria-label="Ver ${item.label}"><img src="${item.src}" alt="${name} ${item.label}" loading="lazy" onerror="this.onerror=null;this.src='${defaultReplicaImage}'"><span>${item.label}</span></button>`).join(''):''}
+        </div>
+        <div class="detail-image">
+          <img id="detailMainImage" src="${getVariantImage(name,v.label)}" alt="${name}" loading="lazy" decoding="async" width="896" height="1200" onerror="if(this.src.endsWith('.webp')){this.onerror=null;this.src='${getVariantPngImage(name,v.label)}'}else{this.onerror=null;this.src='${defaultReplicaImage}'}">
+        </div>
       </div>
       <div class="detail-copy">
         <p class="eyebrow">DETALLE DE FRAGANCIA</p>
@@ -286,16 +314,16 @@ function showDetail(name,selected){
           <div><b>Ocasión</b><span>${info.occasion}</span></div>
         </div>
         <div class="variant-picker">
-          <p>Versión Disponible</p>
-          <button type="button" class="variant selected" data-variant="Inspirado en">Inspirado en<small>30 ml</small></button>
+          <p>Elige tu versión</p>
+          ${variants.map(x=>`<button type="button" class="variant ${x.label===selected?'selected':''} ${isVariantAvailable(name,x)?'':'unavailable'}" data-variant="${x.label}">${x.label}<small>${x.sizes?.join(' · ')||x.size}${isVariantAvailable(name,x)?'':' · Agotado'}</small></button>`).join('')}
         </div>
         <div class="size-picker">
           <p>Medida</p>
-          <button type="button" class="size-option selected" data-size="30 ml">30 ml (Disponible)</button>
+          ${(v.sizes||[v.size]).map(s=>`<button type="button" class="size-option ${!requiresSize&&s===v.size?'selected':''}" data-size="${s}">${s}${isVariantAvailable(name,v)?'':' · Agotado'}</button>`).join('')}
         </div>
         <label class="quantity">Cantidad <input id="detailQty" type="number" min="1" value="1"></label>
-        <strong class="detail-price">${money(price)}</strong>
-        <button class="gold full" id="detailAdd">Añadir al carrito · ${money(price)}</button>
+        <strong class="detail-price">${requiresSize?'Selecciona una medida':priceLabel(v.label,v.size,name)}</strong>
+        <button class="gold full" id="detailAdd" ${requiresSize?'disabled':''}>${requiresSize?'Selecciona una medida':`Añadir al carrito · ${priceLabel(v.label,v.size,name)}`}</button>
       </div>
     </div>
   `;
@@ -303,10 +331,28 @@ function showDetail(name,selected){
   window.scrollTo({ top: 0, behavior: 'smooth' });
 
   // Prevenir cualquier movimiento o salto al hacer clic en las opciones de versión o tamaño
-  detail.querySelectorAll('.variant, .size-option').forEach(btn => {
+  detail.querySelectorAll('.variant').forEach(btn => {
     btn.addEventListener('click', e => {
       e.preventDefault();
       e.stopPropagation();
+      showDetail(name,btn.dataset.variant);
+    });
+  });
+  detail.querySelectorAll('.gallery-thumb').forEach(btn=>btn.addEventListener('click',e=>{e.preventDefault();detail.querySelectorAll('.gallery-thumb').forEach(x=>x.classList.remove('selected'));btn.classList.add('selected');const main=detail.querySelector('#detailMainImage');if(main){main.onerror=()=>{main.onerror=null;main.src=defaultReplicaImage};main.src=btn.dataset.gallerySrc}}));
+  detail.querySelectorAll('.size-option').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      detail.querySelectorAll('.size-option').forEach(option=>option.classList.remove('selected'));
+      btn.classList.add('selected');
+      const selectedSize=btn.dataset.size;
+      detail.querySelectorAll('.gallery-thumb').forEach(thumb=>thumb.classList.toggle('selected',thumb.dataset.size===selectedSize));
+      const selectedPrice=priceLabel(v.label,selectedSize,name);
+      const priceElement=detail.querySelector('.detail-price');
+      const addButton=detail.querySelector('#detailAdd');
+      if(priceElement) priceElement.textContent=selectedPrice;
+      if(addButton) addButton.textContent=`Añadir al carrito · ${selectedPrice}`;
+      if(addButton) addButton.disabled=false;
     });
   });
 
@@ -315,7 +361,7 @@ function showDetail(name,selected){
     addBtn.onclick=()=>{
       const qty = parseInt(detail.querySelector('#detailQty')?.value || '1', 10);
       for(let k = 0; k < qty; k++) {
-        add(name, 'Inspirado en', '30 ml');
+        add(name, selected, detail.querySelector('.size-option.selected')?.dataset.size || v.size);
       }
     };
   }
@@ -334,14 +380,14 @@ function renderCart(){
   document.querySelector('#cartItems').innerHTML=cart.length?cart.map((x,i)=>`
     <div class="item">
       <div class="item-row">
-        <span><b>${x.name}</b><br><small>${x.variant} · ${x.size} · ${money(x.price)}</small></span>
+        <span><b>${x.name}</b><br><small>${x.variant} · ${x.size} · ${x.price===null?'Precio por confirmar':money(x.price)}</small></span>
         <button data-remove="${i}">Eliminar</button>
       </div>
       <div class="qty"><button data-dec="${i}">−</button> ${x.qty} <button data-inc="${i}">+</button></div>
     </div>
   `).join(''):'<p>Tu carrito está vacío.</p>';
   
-  const total = cart.reduce((a,x)=>a+x.price*x.qty,0);
+  const total = cart.reduce((a,x)=>a+(x.price||0)*x.qty,0);
   document.querySelector('#cartTotal').textContent=money(total);
   
   document.querySelectorAll('[data-inc]').forEach(b=>b.onclick=()=>{cart[b.dataset.inc].qty++;renderCart()});
@@ -355,14 +401,25 @@ document.querySelector('#confirmOrder')?.addEventListener('click', () => {
     const message=document.querySelector('#cartMessage'); if(message) message.textContent='Tu carrito está vacío. Elige tu fragancia favorita.';
     return;
   }
-  const lines = cart.map(x => `• ${x.qty}x ${x.name} (${x.variant} ${x.size}) - ${money(x.price * x.qty)}`);
-  const total = cart.reduce((a, x) => a + x.price * x.qty, 0);
-  const text = `¡Hola Samblitz! Deseo realizar el siguiente pedido:\n\n${lines.join('\n')}\n\n*Total a pagar:* ${money(total)}\n\n¿Me confirman disponibilidad para acordar el despacho?`;
+  const whatsappMoney = value => money(value).replace('$','$ ');
+  const groups = [
+    ['Calidad 1.1','CALIDAD 1.1'],
+    ['Loción de inspiración','LOCIONES INSPIRADAS'],
+    ['Original','ORIGINALES'],
+    ['Decant','DECANTS']
+  ];
+  const sections = groups.map(([variant,title])=>{
+    const items=cart.filter(x=>x.variant===variant);
+    if(!items.length) return '';
+    return `${title}:\n${items.map(x=>`• ${x.qty}x ${x.name} (${x.size}) - ${x.price===null?'Precio por confirmar':whatsappMoney(x.price*x.qty)}`).join('\n')}`;
+  }).filter(Boolean);
+  const total = cart.reduce((a, x) => a + (x.price||0) * x.qty, 0);
+  const text = `¡Hola Samblitz! Deseo realizar el siguiente pedido:\n\n${sections.join('\n\n')}\n\n*Total a pagar:* ${whatsappMoney(total)}\n\n¿Me confirman disponibilidad?`;
   const whatsappUrl = `https://wa.me/573163571026?text=${encodeURIComponent(text)}`;
   window.open(whatsappUrl, '_blank', 'noopener');
 });
 
-document.querySelector('#typeFilter').onchange=()=>renderProducts();
+document.querySelector('#typeFilter').onchange=e=>{filter=e.target.value;renderProducts()};
 document.querySelector('#genderFilter').onchange=()=>renderProducts();
 document.querySelector('#cartToggle').onclick=()=>document.querySelector('#cart').classList.add('open');
 document.querySelector('#closeCart').onclick=()=>document.querySelector('#cart').classList.remove('open');
